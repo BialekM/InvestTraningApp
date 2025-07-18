@@ -1,1 +1,31 @@
-<h1 class="center">Practice Time!</h1>
+<app-header></app-header>
+<app-user-input (investmentSubmitted)="onCalculateInvestmentResults($event)"></app-user-input>
+@if (resultData) {
+<table>
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Interest Earned</th>
+            <th>Total Value at End of Year</th>
+            <th>Annual Investment</th>
+            <th>Total Interest Earned</th>
+            <th>Total Amount Invested</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of resultData; track item.year) {
+        <tr>
+            <td>Year: {{item.year}}</td>
+            <td>Interest Earned: {{item.interest | currency}}</td>
+            <td>Total Value at End of Year: {{item.valueEndOfYear}}</td>
+            <td>Annual Investment: {{item.annualInvestment}}</td>
+            <td>Total Interest Earned: {{item.totalInterest}}</td>
+            <td>Total Amount Invested: {{item.totalAmountInvested}}</td>
+        </tr>
+        }
+    </tbody>
+</table>
+}
+@else {
+<p>No results to display. Please enter your investment details.</p>
+}
